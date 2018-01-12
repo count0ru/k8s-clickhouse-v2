@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clickhouse-ext
+  labels:
+    app: clickhouse
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8123
+      name: server
+    - port: 9000
+      name: client
+  selector:
+    app: clickhouse

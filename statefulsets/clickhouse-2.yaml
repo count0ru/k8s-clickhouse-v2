@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: clickhouse-2
+  labels:
+    exporter: clickhouse
+    clicknode: "2"
+spec:
+  serviceName: clickhouse-2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+        exporter: clickhouse
+        clicknode: "2"
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+    spec:
+      containers:
+        - name: k8sch
+          imagePullPolicy: Always
+          image: count0ru/k8s-clickhouse-v2
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: KUBERNETES_DOMAIN
+              value: "clickhouse.local"
+            - name: CLUSTER_NAME
+              value: "k8scluster"
+            - name: NODE_ID
+              value: "2"
+          ports:
+            - containerPort: 8123
+              name: server
+        - name: clickhouse-exporter
+          image: f1yegor/clickhouse-exporter
+          ports:
+            - containerPort: 9116

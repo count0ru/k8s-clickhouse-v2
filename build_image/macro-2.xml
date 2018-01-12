@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<yandex>
+    <macros>
+        <shard>02</shard>
+        <replica>01</replica>
+    </macros>
+</yandex>
