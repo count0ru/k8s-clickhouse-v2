@@ -1,7 +1,7 @@
 echo "Current hostname is $HOSTNAME.clickhouse.$NAMESPACE.$KUBERNETES_DOMAIN"
 echo "Current cluster name is $CLUSTER_NAME"
 
-sed -i "s/NODENAME/$HOSTNAME/" /etc/clickhouse-server/config.xml
+sed -i "s/NODENAME/$NODENAME/" /etc/clickhouse-server/config.xml
 sed -i "s/NAMESPACE/$NAMESPACE/" /etc/clickhouse-server/config.xml
 sed -i "s/KUBERNETES_DOMAIN/$KUBERNETES_DOMAIN/" /etc/clickhouse-server/config.xml
 sed -i "s/CLUSTER_NAME/$CLUSTER_NAME/" /etc/clickhouse-server/config.xml
