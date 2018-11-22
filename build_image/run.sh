@@ -6,7 +6,7 @@ sed -i "s/NAMESPACE/$NAMESPACE/" /etc/clickhouse-server/config.xml
 sed -i "s/KUBERNETES_DOMAIN/$KUBERNETES_DOMAIN/" /etc/clickhouse-server/config.xml
 sed -i "s/CLUSTER_NAME/$CLUSTER_NAME/" /etc/clickhouse-server/config.xml
 
-NODE_ID=$(echo $(hostname) | awk '{print substr($0,length,1)}')
+NODE_ID=$(echo $(hostname) | awk '{print substr($0,length-2,1)}')
 
 cp /opt/macro-$NODE_ID.xml /etc/clickhouse-server/macro.xml
 
